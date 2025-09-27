@@ -5,7 +5,7 @@ import 'package:islami/core/theme/app_colors.dart';
 import 'package:islami/modules/layout/tabs/hadeth_tab/hadeth_tab.dart';
 import 'package:islami/modules/layout/tabs/quran_tab/quran_tab.dart';
 import 'package:islami/modules/layout/tabs/radio_tab.dart';
-import 'package:islami/modules/layout/tabs/sebha_tab.dart';
+import 'package:islami/modules/layout/tabs/sebha_tab/sebha_tab.dart';
 import 'package:islami/modules/layout/tabs/time_tab.dart';
 
 class Home extends StatefulWidget {
