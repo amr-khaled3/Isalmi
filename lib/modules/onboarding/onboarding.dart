@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:islami/core/app_const/app_const.dart';
+import 'package:islami/core/cashing/cashing_keys.dart';
+import 'package:islami/core/extentions/extention.dart';
+import 'package:islami/core/init_app.dart';
 import 'package:islami/core/theme/app_colors.dart';
 import 'package:islami/modules/layout/home.dart';
 import 'package:islami/modules/onboarding/widgets/NavigatorTextFormat.dart';
@@ -16,10 +19,16 @@ class Onboarding extends StatefulWidget {
 class _OnboardingState extends State<Onboarding> {
   final PageController pageController = PageController();
   int _currentPage = 0;
-
-  void _getNextCard() {
+  
+  @override
+  void initState() {
+    InitApp.sharedPreferences.setBool(CashingKeys.isFirst, false);
+    super.initState();
+  }
+  
+  void _getNextCard() async{
     if (_currentPage < onboardingImages.length - 1) {
-      pageController.animateToPage(
+      await pageController.animateToPage(
         _currentPage + 1,
         duration: Duration(milliseconds: 700),
         curve: Curves.easeIn,
@@ -81,10 +90,7 @@ class _OnboardingState extends State<Onboarding> {
                           padding: const EdgeInsets.symmetric(vertical: 20),
                           child: Text(
                             onboardingTextImage[index],
-                            style: TextStyle(
-                              fontFamily: 'janna',
-                              fontSize: 24,
-                              color: AppColors.secondaryColor,
+                            style: context.appTextTheme.bodyLarge!.copyWith(
                               fontWeight: FontWeight.w700,
                             ),
                             textAlign: TextAlign.center,
@@ -96,11 +102,10 @@ class _OnboardingState extends State<Onboarding> {
                           padding: const EdgeInsets.symmetric(horizontal: 16.0),
                           child: Text(
                             onboardingTextInfo[index],
-                            style: TextStyle(
-                              fontFamily: 'janna',
+                            style: context.appTextTheme.bodyMedium!.copyWith(
                               fontSize: 18,
-                              color: AppColors.secondaryColor,
                               fontWeight: FontWeight.w400,
+                              color: context.appTheme.colorScheme.secondary
                             ),
                             textAlign: TextAlign.center,
                           ),
@@ -157,4 +162,5 @@ class _OnboardingState extends State<Onboarding> {
       ),
     );
   }
+
 }

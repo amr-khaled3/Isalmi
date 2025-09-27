@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:islami/core/init_app.dart';
+import 'package:islami/core/theme/app_theme.dart';
 import 'package:islami/modules/layout/home.dart';
 import 'package:islami/modules/onboarding/onboarding.dart';
 import 'package:islami/modules/sura_details/suar_details.dart';
 
+import 'modules/layout/hadeth_details/hadeth_details.dart';
 import 'modules/splash_screen/splash_screen.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await InitApp.initApp();
   runApp(const Islami());
 }
 
@@ -23,8 +28,11 @@ class Islami extends StatelessWidget {
         Home.route: (context) => Home(),
         SuraDetails.route: (context) => SuraDetails(),
         Onboarding.route: (context) => Onboarding(),
+        HadethDetails.route: (context) => HadethDetails()
       },
       home: SplashScreen(),
+      darkTheme: AppTheme.darkThem,
+      themeMode:ThemeMode.dark,
     );
   }
 }

@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:islami/core/cashing/cashing_keys.dart';
+import 'package:islami/core/init_app.dart';
 import 'package:islami/core/theme/app_colors.dart';
+import 'package:islami/modules/layout/tabs/quran_tab/quran_tab.dart';
 import 'package:islami/modules/onboarding/onboarding.dart';
 
 import '../layout/home.dart';
@@ -20,7 +23,9 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, Onboarding.route);
+      InitApp.sharedPreferences.getBool(CashingKeys.isFirst) == null ?
+      Navigator.pushReplacementNamed(context, Onboarding.route)
+          : Navigator.pushReplacementNamed(context, Home.route);
     });
   }
 

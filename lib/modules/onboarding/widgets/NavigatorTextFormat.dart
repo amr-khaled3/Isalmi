@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:islami/core/extentions/extention.dart';
 import '../../../core/theme/app_colors.dart';
 
 class NavigatorTextFormat extends StatelessWidget {
@@ -19,11 +20,8 @@ class NavigatorTextFormat extends StatelessWidget {
       splashColor: Colors.transparent,
       child: Text(
         text,
-        style: TextStyle(
-          fontWeight: FontWeight.w700,
-          fontSize: 16.0,
-          fontFamily: 'janna',
-          color: AppColors.secondaryColor,
+        style: context.appTextTheme.bodyMedium!.copyWith(
+          color:context.appTheme.colorScheme.secondary
         ),
       ),
     );

@@ -2,35 +2,28 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islami/core/extentions/extention.dart';
+import 'package:islami/core/models/hadeth.dart';
 import 'package:islami/core/theme/app_colors.dart';
 
-import '../../core/models/sura.dart';
 
-class SuraDetails extends StatefulWidget {
-  static final String route = 'SuraDetails';
-  SuraDetails({super.key});
+
+class HadethDetails extends StatefulWidget {
+  static final String route = 'HadethDetails';
+  HadethDetails({super.key});
 
   @override
-  State<SuraDetails> createState() => _SuraDetailsState();
+  State<HadethDetails> createState() => _SuraDetailsState();
 }
 
-class _SuraDetailsState extends State<SuraDetails> {
-  Sura? sura;
+class _SuraDetailsState extends State<HadethDetails> {
+  Hadeth? hadeth;
   String suraDetails = '';
   List<String> ayat = [];
 
-  void readSura(int id) async {
-    suraDetails = await rootBundle.loadString('assets/Suras/${id}.txt');
-    ayat = suraDetails.trim().split('\n');
-    setState(() {});
-  }
-
   @override
   Widget build(BuildContext context) {
-    sura ??= ModalRoute.of(context)!.settings.arguments as Sura;
-    if (suraDetails.isEmpty) {
-      readSura(sura?.id ?? 0);
-    }
+    hadeth ??= ModalRoute.of(context)!.settings.arguments as Hadeth;
+
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
       appBar: AppBar(
@@ -46,7 +39,7 @@ class _SuraDetailsState extends State<SuraDetails> {
           ),
         ),
         title: Text(
-          sura!.suraEnglish,
+          "Hadeeth${hadeth!.hadeethIndex}",
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: AppColors.secondaryColor,
@@ -73,9 +66,9 @@ class _SuraDetailsState extends State<SuraDetails> {
                 children: [
                   Image.asset("assets/images/img_left_corner.png"),
                   Text(
-                    sura!.suraArabic,
+                    hadeth!.title,
                     style: context.appTextTheme.bodyLarge!.copyWith(
-                      fontSize: 32,
+                      fontSize: 15,
                     ),
                   ),
                   Image.asset("assets/images/img_right_corner.png"),
@@ -83,21 +76,10 @@ class _SuraDetailsState extends State<SuraDetails> {
               ),
               Text.rich(
                 TextSpan(
-                  children: ayat.map((aya) {
-                    int idx = ayat.indexOf(aya);
-                    return TextSpan(
-                      text: aya,
-                      children: [
-                        TextSpan(
-                          text: " [${idx + 1}] ",
-                          style: context.appTextTheme.bodyMedium,
-                        ),
-                      ],
-                    );
-                  }).toList(),
+                  text: hadeth!.content,
                   style: context.appTextTheme.labelLarge!.copyWith(
-                    height: 2,
-                    color: context.appTheme.colorScheme.secondary
+                      height: 2,
+                      color: context.appTheme.colorScheme.secondary
                   ),
                 ),
                 textDirection: TextDirection.rtl,

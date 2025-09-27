@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:islami/core/extentions/extention.dart';
 import 'package:islami/core/models/sura.dart';
 
 import '../../../../../core/app_const/app_const.dart';
@@ -37,34 +38,19 @@ class SuraCard extends StatelessWidget {
               children: [
                 Text(
                   sura.suraEnglish,
-                  style: TextStyle(
-                    fontFamily: 'janna',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                    color: AppColors.white,
-                  ),
+                  style: context.appTextTheme.labelLarge
                 ),
                 SizedBox(height: 7),
                 Text(
                   sura.ayaNumber,
-                  style: TextStyle(
-                    color: AppColors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'janna',
-                  ),
+                  style: context.appTextTheme.labelLarge,
                 ),
               ],
             ),
           ),
           Text(
             sura.suraArabic,
-            style: TextStyle(
-              color: AppColors.white,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'janna',
-            ),
+            style: context.appTextTheme.labelLarge,
           ),
         ],
       ),
