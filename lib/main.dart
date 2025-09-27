@@ -5,7 +5,8 @@ import 'package:islami/modules/layout/home.dart';
 import 'package:islami/modules/onboarding/onboarding.dart';
 import 'package:islami/modules/sura_details/suar_details.dart';
 
-import 'modules/layout/hadeth_details/hadeth_details.dart';
+import 'modules/hadeth_details/hadeth_details.dart';
+
 import 'modules/splash_screen/splash_screen.dart';
 
 void main() async{

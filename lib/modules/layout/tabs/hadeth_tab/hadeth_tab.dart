@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islami/core/extentions/extention.dart';
 import 'package:islami/core/models/hadeth.dart';
-import 'package:islami/modules/layout/hadeth_details/hadeth_details.dart';
 import 'package:islami/modules/layout/tabs/hadeth_tab/widget/hadeth_card.dart';
+
+import '../../../hadeth_details/hadeth_details.dart';
 
 class HadethTab extends StatefulWidget {
   HadethTab({super.key});
